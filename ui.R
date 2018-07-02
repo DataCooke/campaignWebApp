@@ -9,17 +9,7 @@ fluidPage(
 
   ),
   
-  #tags$div(
-   # "Some text followed by a break", 
-   # tags$br(),
-    #"Some text following a break"
-  #),
-  
-  #titlePanel("Google Analytics Campaign URL Builder"),
- # column(4,
-        # includeHTML("include.html")
-       #  ),
-  
+ 
  
   
   # Copy the line below to make a select box 
