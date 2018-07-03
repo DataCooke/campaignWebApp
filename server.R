@@ -2,7 +2,7 @@
 library
 function(input, output) {
   
-  output$all <- renderText(paste(input$URL, input$select, input$variable, input$content, sep = ""))
+  output$all <- renderText(paste(input$URL, input$source, input$select, if (input$variable > 0) {"&utm_campaign="}, input$variable, input$market, input$content, sep = ""))
 }
 
 # Run the application 

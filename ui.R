@@ -2,6 +2,7 @@ library(shiny)
 
 
 fluidPage(
+  tags$img(src = "https://media.giphy.com/media/26u44qAByezPD0Y5a/giphy.gif", width = "76px", height = "50px"),
   
   mainPanel(width = 12, h1("Google Analytics Campaign URL Builder"),
     p("Use this tool to ensure you have the correct URL for tracking your campaign in Google Analytics!"),
@@ -15,21 +16,49 @@ fluidPage(
   # Copy the line below to make a select box 
  fluidRow( 
    
-  column(3, textInput("URL", label = h3("Insert URL"), value = "Insert Link Here...")),
+  column(2, textInput("URL", label = h3("Insert URL"), placeholder = "Insert URL Here...")),
    
- column(3, selectInput("select", label = h3("Select Medium"), 
-              choices = list("Email" = "?utm_source=dynamic&utm_medium=email", "Social" = "?utm_source=dynamic&utm_medium=social", "Referral" = "?utm_source=dynamic&utm_medium=referral", "Organic" = "?utm_source=dynamic&utm_medium=organic", "None" = "?utm_source=dynamic"), 
-              selected = 1)),
+  #column(2, selectizeInput("source", label = h3("Select Source"), 
+                        #choices = list("Newsletter" = "?utm_source=newsletter", "Promotion" = "?utm_source=promotion", "Welcome Letter" = "?utm_source=welcomeletter", "Facebook" = "?utm_source=facebook.com", "twitter" = "?utm_source=twitter.com"), 
+                       # selected = 1)),
+  column(2, selectizeInput(
+    'source', label = h3("Source"), choices = list("Newsletter" = "?utm_source=newsletter","Welcome Letter" = "?utm_source=welcomeletter", "SAP" = "?utm_source=sap", "Promotion" = "?utm_source=promotion", "Facebook" = "?utm_source=facebook", "twitter" = "?utm_source=twitter"),
+    options = list(
+      placeholder = 'Select Option',
+      onInitialize = I('function() { this.setValue(""); }')
+    )
+  )),
   
+  column(2, selectizeInput(
+    'select', label = h3("Select Medium"), choices = list("Email" = "&utm_medium=email", "Social" = "&utm_medium=social", "Referral" = "&utm_medium=referral", "Organic" = "&utm_medium=organic"),
+    options = list(
+      placeholder = 'Select Option',
+      onInitialize = I('function() { this.setValue(""); }')
+    )
+  )),
   
-  column(3, selectInput("variable", label = h3("Select Campaign"), 
-              choices = list("Test1" = "&utm_campaign=test1", "Test2" = "&utm_campaign=test2", "Test3" = "&utm_campaign=test3", "Test4" = "&utm_campaign=test4", "None" = ""), 
-              selected = 0, selectize = FALSE)),
+  #column(2, selectizeInput("select", label = h3("Select Medium"), 
+            #  choices = list("Email" = "&utm_medium=email&utm_campaign=", "Social" = "&utm_medium=social&utm_campiagn=", "Referral" = "&utm_medium=referral&utm_campaign-", "Organic" = "&utm_medium=organic&utm_camaign="), 
+            #  selected = 1)),
   
-  column(3, selectInput("content", label = h3("Select Content"), 
-              choices = list("Banner Ad" = "&utm_content=bannerAd", "Sidebar Ad" = "&utm_content=sidebarAd", "Textlink" = "&utm_content=textlink", "Logolink" = "&utm_content=logolink", "None" = ""), 
-              selected = 0, selectize = FALSE))
-),
+  column(2, textInput("variable", label = h3("Insert Campaign (lowercase)"), 
+              value = "", placeholder = "Insert Campaign Here")),
+  
+  column(2, selectizeInput(
+    "market", label = h3("Select Market"), choices = list("US" = "&utm_content=US", "Hong Kong" = "&utm_content=HK", "Macau" = "&utm_content=MO", "Taiwan"= "&utm_content=TW"),
+    options = list(
+      value = "", placeholder = 'Select Market',
+      onInitialize = I('function() { this.setValue(""); }')
+    )
+  )),
+  
+  column(2, textInput("content", label = h3("Optional Sub-Campaign (lowercase)"), 
+                      value = "", placeholder = "Insert Sub-Campaign Here"))
+ ),
+  
+ # column(2, selectInput("content", label = h3("Select Content"), 
+             # choices = list("US" = "&utm_content=US", "Hong Kong" = "&utm_content=HK", "Macau" = "&utm_content=MO", "Taiwan"= "&utm_content=TW", "None" = ""), 
+             # selected = 0, selectize = FALSE))
 
   hr(),
  mainPanel(
@@ -37,7 +66,7 @@ fluidPage(
  ),
   all <- fluidRow(column(12, verbatimTextOutput("all"))),
   
-tags$img(src = "http://charitydblog.wpengine.com/wp-content/uploads/2015/05/data-cat_2.png", width = "300px", height = "300px")
+tags$img(src = "http://charitydblog.wpengine.com/wp-content/uploads/2015/05/data-cat_2.png", width = "150px", height = "150px")
   
 )
 
