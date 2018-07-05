@@ -18,11 +18,9 @@ fluidPage(
    
   column(2, textInput("URL", label = h3("Insert URL"), placeholder = "Insert URL Here...")),
    
-  #column(2, selectizeInput("source", label = h3("Select Source"), 
-                        #choices = list("Newsletter" = "?utm_source=newsletter", "Promotion" = "?utm_source=promotion", "Welcome Letter" = "?utm_source=welcomeletter", "Facebook" = "?utm_source=facebook.com", "twitter" = "?utm_source=twitter.com"), 
-                       # selected = 1)),
+ 
   column(2, selectizeInput(
-    'source', label = h3("Source"), choices = list("Newsletter" = "?utm_source=newsletter","Welcome Letter" = "?utm_source=welcomeletter", "SAP" = "?utm_source=sap", "Promotion" = "?utm_source=promotion", "Facebook" = "?utm_source=facebook", "twitter" = "?utm_source=twitter"),
+    'source', label = h3("Source"), choices = list("Newsletter" = "?utm_source=newsletter","Welcome Letter" = "?utm_source=welcomeletter", "SAP" = "?utm_source=sap", "Promotion" = "?utm_source=promotion", "Facebook" = "?utm_source=facebook", "twitter" = "?utm_source=twitter", "None" = 300),
     options = list(
       placeholder = 'Select Option',
       onInitialize = I('function() { this.setValue(""); }')
@@ -30,22 +28,20 @@ fluidPage(
   )),
   
   column(2, selectizeInput(
-    'select', label = h3("Select Medium"), choices = list("Email" = "&utm_medium=email", "Social" = "&utm_medium=social", "Referral" = "&utm_medium=referral", "Organic" = "&utm_medium=organic"),
+    'medium', label = h3("Select Medium"), choices = list("Email" = "&utm_medium=email", "Social" = "&utm_medium=social", "Referral" = "&utm_medium=referral", "Organic" = "&utm_medium=organic", "None" = 300),
     options = list(
       placeholder = 'Select Option',
       onInitialize = I('function() { this.setValue(""); }')
     )
   )),
   
-  #column(2, selectizeInput("select", label = h3("Select Medium"), 
-            #  choices = list("Email" = "&utm_medium=email&utm_campaign=", "Social" = "&utm_medium=social&utm_campiagn=", "Referral" = "&utm_medium=referral&utm_campaign-", "Organic" = "&utm_medium=organic&utm_camaign="), 
-            #  selected = 1)),
+ 
   
-  column(2, textInput("variable", label = h3("Insert Campaign (lowercase)"), 
+  column(2, textInput("campaign", label = h3("Insert Campaign (lowercase)"), 
               value = "", placeholder = "Insert Campaign Here")),
   
   column(2, selectizeInput(
-    "market", label = h3("Select Market"), choices = list("US" = "&utm_content=US", "Hong Kong" = "&utm_content=HK", "Macau" = "&utm_content=MO", "Taiwan"= "&utm_content=TW"),
+    "market", label = h3("Select Market"), choices = list("US" = "&utm_content=US", "Hong Kong" = "&utm_content=HK", "Macau" = "&utm_content=MO", "Taiwan" = "&utm_content=TW", "None" = 300),
     options = list(
       value = "", placeholder = 'Select Market',
       onInitialize = I('function() { this.setValue(""); }')
@@ -56,9 +52,7 @@ fluidPage(
                       value = "", placeholder = "Insert Sub-Campaign Here"))
  ),
   
- # column(2, selectInput("content", label = h3("Select Content"), 
-             # choices = list("US" = "&utm_content=US", "Hong Kong" = "&utm_content=HK", "Macau" = "&utm_content=MO", "Taiwan"= "&utm_content=TW", "None" = ""), 
-             # selected = 0, selectize = FALSE))
+
 
   hr(),
  mainPanel(
